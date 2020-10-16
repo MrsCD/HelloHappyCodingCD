@@ -25,6 +25,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    - name: dotnet publish
+      run:  dotnet publish -c Release -o dotnetcorewebapp  
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: 'Deploy to Azure WebApp'
