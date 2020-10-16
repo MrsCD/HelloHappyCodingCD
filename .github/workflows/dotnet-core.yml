@@ -5,18 +5,17 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
-    
+
 env:
   AZURE_WEBAPP_NAME: HelloHappyCodingCD    # set this to your application's name
 
+
 jobs:
   build-and-deploy:
-      - name: 'Deploy to Azure WebApp'
 
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -30,7 +29,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
-        with:
+      with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      
